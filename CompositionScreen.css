@@ -1,0 +1,1751 @@
+
+/************************************************************************************************************************/
+/************************************************************************************************************************/
+/**                                                                    									   			   **/
+/**  Ecran de Composition                                                          									   **/
+/**                                                                    									   			   **/
+/************************************************************************************************************************/
+/************************************************************************************************************************/
+
+/* ==================================================================================================================== */
+/*																														*/
+/*  I. Définitions générales (root)              		  																*/
+/*																														*/
+/* ==================================================================================================================== */
+
+:root
+{	
+
+/* Paramétrage des couleurs de la page 										*/
+/* ------------------------------------------------------------------------ */
+
+	--transparent:		#11ffee00;	/* Complètement transparent 			*/
+
+	--black:			#000000;		/* Inutilisé						*/
+	--white:			#FFFFFF;		/* Textes & Icônes sur fond foncé	*/
+	--whiteTr:			#FFFFFF50;		/* Survol des Icônes				*/
+	
+	--blue01:			#006087;		/* Barre de titre					*/
+	--blue02:			#C5D9EC;		/* Entrée menu sélectionnée	(fond)	*/
+	--blue03:			#084B77;		/* Entrée menu sélectionnée	(texte)	*/
+	--blue04:			#1E90FC;		/* Page								*/
+	--blue05:			#0A7398;		/* Barre de titre du schéma			*/
+	--blue06:			#EBFAFF;		/* Hover bloc						*/
+	--blue07:			#2171AF;		/* Lien vers autre page				*/
+	--blue08:			#71AEE4;		/* Border d'input sélectionné		*/
+	
+	--grey01:			#F6F7F7;		/* Fond de page par défaut			*/
+	--grey02:			#DCDCDE;		/* Boutons, Entrée menu survolée	*/
+	--grey03:			#646970;		/* Texte, icônes menu /fond blanc	*/
+	--grey03Tr:			#64697010;		/* Texte, icônes menu				*/
+	--grey04:			#888888;		/* Zone de dessin du schéma			*/
+	--grey04Tr:			#AAAAAA88;		/* Voile gris						*/
+	--grey05:			#2C3338;		/* Texte d'input					*/	
+	--grey06:			#C3C4C7;		/* Border d'input					*/	
+	--grey07:			#444455;		/* Volet de navigation du schéma	*/
+	
+	--violet01:			#CB316B;		/* Boutons d'action violet-rouge 	*/
+	--violet02:			#AD1F58;		/* Boutons d'action survolés		*/
+
+	--yellow:			#FFFF00;		/* Tests							*/
+
+
+
+/* Taille des marges   														*/
+/* ------------------------------------------------------------------------ */
+	--margin1:	 		20px;			/* Inter-lignes						*/
+	--margin2:	 		20px;			/* Inter-blocs						*/
+	--margin3:	 		10px;			/* Inter-lignes des piles de blocs	*/
+
+
+/* Propriété font-size : taille de police par défaut               			*/
+/* Propriété font-family : liste ordonnée des polices à utiliser   			*/
+/* ------------------------------------------------------------------------ */
+	font-size:	 		14px;
+	font-family: 		Lato,  sans-serif;
+	color:				var(--grey03);
+	
+/* Valeurs par défaut  margin/padding	(NB. Pas d'héritage pour border)  	*/
+/* ------------------------------------------------------------------------ */
+	margin:				0;	/* Précaution systématique pour éviter les marges générées par le navigateur */
+	padding:			0;
+
+}
+
+/* ==================================================================================================================== */
+/*																														*/
+/*  II. Définitions adaptées à une petite fenêtre                                										*/
+/*																														*/
+/* ==================================================================================================================== */
+
+@media (max-width: 400px) 
+{
+}
+
+/* ==================================================================================================================== */
+/*																														*/
+/*  III. Définitions adaptées à une grande fenêtre                              										*/
+/*																														*/
+/* ==================================================================================================================== */
+
+@media (min-width: 400px) 
+{
+
+
+
+
+
+/* ==================================================================================================================== */
+/*  III.1. Barre de titre	                      																		*/
+/* ==================================================================================================================== */
+
+/* -------------------------------------------------------------------------------------------------------------------- */
+/*  III.1.A  Conteneur principal																						*/
+/* -------------------------------------------------------------------------------------------------------------------- */
+
+#titleBarBlock{
+	background:			var(--white);	
+	color:				var(--grey03);	 
+	height:				48px;
+	/* Flex cont. */		
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	flex-start;	/* Cadrage à gauche  */
+	align-items:		center;		/* Centrage vertical */
+	align-content:		flex-start;	
+	}
+			
+/* -------------------------------------------------------------------------------------------------------------------- */
+/*  III.1.B  Conteneurs secondaires																						*/
+/* -------------------------------------------------------------------------------------------------------------------- */
+	
+/* Logo O.P.A.L.															*/
+/* ------------------------------------------------------------------------ */
+
+#logoBlock
+{
+	background-image:	url('img/LogoOPAL.png');
+	background-repeat:	no-repeat;
+	background-size:	48px 48px;
+	height:				48px;
+	width:				48px;
+	/* Flex item. */
+	display:			flex;		
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				1;			
+	}
+	#logoBlock:hover{filter: brightness(2); transition: transform 0.3s; transform: scale(1.2);}
+	
+	
+/* Icones de gauche															*/
+/* ------------------------------------------------------------------------ */
+#leftIconsBlock{
+	height:				48px;
+	line-height:		48px;
+	/* Flex item. */
+	display:			flex;
+	align-self:			auto;		
+	flex-grow:			1;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				2;			
+	}
+/*	#leftIconsBlock:hover{background-color:	rgb(255, 000, 255, 0.3);}				/* Debug */
+
+
+/* Titre																	*/
+/* ------------------------------------------------------------------------ */
+#titleNameBlock{
+	height:				48px;
+	line-height:		48px;
+	font-size:	 		16px;
+	font-weight:		700;
+	cursor:				not-allowed;
+	/* Flex item. */
+	display:			flex;
+	align-self:			auto;		
+	flex-grow:			1;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				3;			
+	}
+/*	#titleBlock:hover{background-color:	rgb(255, 000, 255, 0.3);}					/* Debug */
+
+
+/* Boutons d'action	 (Valider ...)											*/
+/* ------------------------------------------------------------------------ */
+		
+/* Zone contenant les boutons												*/
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+#actionButtonsBlock{
+	height:				48px;
+	line-height:		48px;
+	color:				var(--white);
+	text-align:			center;
+	margin:				0px 20px 0px 0px;	/* Séparer du bloc suivant */
+	padding:			5px;
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	flex-start;	/* Cadrage à gauche  */
+	align-items:		center;		/* Centrage vertical */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				4;			
+	}
+/*#actionButtonsBlock:hover{background-color:	rgb(000, 255, 000, 0.3);}		
+
+		
+/* Boutons d'action  														*/
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+.titleBarActionButton {
+	width:				auto;
+	height:				30px;
+	border:				0;		/* Important car valeur par défaut = outset */
+	border-radius: 		4px;	/* Coins arrondis */
+	background-color: 	var(--violet01);	
+	padding:			3px 20px 3px 20px;
+	font-weight:		400;
+	color: 				white;
+	cursor:				pointer;
+	/* Flex item. */
+	display:			flex;
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+}
+.titleBarActionButton:hover{background-color:	var(--violet02);}
+
+
+/* Icones de droite															*/
+/* ------------------------------------------------------------------------ */
+
+#rightIconsBlock{
+	height:				48px;
+	line-height:		48px;
+	max-width:			200px;
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	flex-start;	/* Cadrage à gauche  */
+	align-items:		center;		/* Centrage vertical */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				5;			
+	}
+/* #rightIconsBlock:hover{background-color:	rgb(000, 000, 255, 0.3);}				/* Debug */
+
+	
+/* Icones	(gauche et droite)												*/
+/* =======================================================================  */
+
+.titleBarIconButton{
+	width:				48px;
+	height:				48px;
+	padding:			12px;
+	border:				none;		/* Important car valeur par défaut = outset */
+	background-color:	inherit;	/* Important car valeur par défaut = gris	*/
+	cursor:				pointer;
+	/* Flex item. */
+	display:			flex;
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+.titleBarIconButton:hover{background-color:	var(--whiteTr);}
+
+	
+/* ==================================================================================================================== */
+/*  III.2. Corps de l'écran	                      																		*/
+/* ==================================================================================================================== */
+
+/* -------------------------------------------------------------------------------------------------------------------- */
+/*  III.2.A  Conteneur principal																						*/
+/* -------------------------------------------------------------------------------------------------------------------- */
+
+#screenBlock{
+	background-color:	var(--yellow);	/* ne doit pas apparaitre */
+	height:				calc(100vh - 84px);		/* Occupation de la partie basse de l'écran, sans ascenseur vertical	*/
+												/* 84 = 48 (titre) + 36 ???  pourquoi 36 ?								*/	
+												/* Ne pas oublier de laisser des blancs de part et d'autre du signe -	*/
+	padding:			0px;
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	flex-start;	/* Cadrage à gauche */
+	align-items:		stretch;	/* Blocs étirés à partir du haut */
+	align-content:		flex-start;	
+	}
+
+/* -------------------------------------------------------------------------------------------------------------------- */
+/*  III.2.B  Volet gauche de l'écran																					*/
+/* -------------------------------------------------------------------------------------------------------------------- */
+
+/*  Conteneur principal du volet	*/
+/* -------------------------------- */
+
+#itemsListBlock{
+	background-color:	var(--grey02);	
+	height:				auto;
+	width:				300px;
+	padding:			10px;
+	overflow-y:			auto;		/* auto : met une barre de défilement verticale si besoin */
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		column;		
+	flex-wrap:			no-wrap;	
+	justify-content:	flex-start;	/* Blocs calés en haut */
+	align-items:		stretch;	/* Blocs étirés à partir de la gauche */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;		/* Volet de largeur fixe */
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+
+/*  Bloc d'en-tête du volet	*/
+/* - - - - - - - - - - - -  */
+
+#itemsListHeaderBlock{
+	background-color:	inherit;	
+	height:				30px;
+	padding:			0px;
+	margin-bottom:		10px;
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	space-between;	/* Blocs répartis avec espaces */
+	align-items:		center;			/* Centrage vertical */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+
+/* En-tête du volet : Libellé	*/
+/* ............................ */
+
+#itemsListHeaderLabel{
+	height:				auto;
+	width:				auto;
+	font-weight:		700;
+	/* Flex item. */
+	display:			flex;
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+					 /* Texte    */			
+	justify-content:	center;		/* Texte centré verticalement sur la ligne */
+	}
+
+/* En-tête du volet : Icone		*/
+/* ............................ */
+
+#itemsListHeaderIconButton{
+	width:				24px;
+	height:				24px;
+	background-color:	var(--transparent);	
+	padding:			0px;
+	border:				none;		/* Important */
+	cursor:				pointer;
+	/* Flex item. */
+	display:			flex;
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+#itemsListHeaderIconButton:hover{background-color:	var(--grey03Tr);}
+
+#itemTransactionBlock{							/* Bloc en mode Display */
+	background-color:	var(--white);
+	height:				auto;
+	margin:				5px;
+	padding:			5px;
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	flex-start;	/* Cadrage à gauche  */
+	align-items:		center;		/* Centrage vertical */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+
+#itemTransactionInputField{						/* Bloc en mode Input */
+	background-color:	inherit;
+	color:				var(--white);	
+	height:				auto;
+	margin:				2px;
+	border:				none;
+	outline:			none;	/* Fait disparaitre le cadre bleu lors du focus */
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	flex-start;	/* Cadrage à gauche  */
+	align-items:		center;		/* Centrage vertical */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+
+/*  Corps du volet - Conteneur principal	*/
+/* - - - - - - - - - - - - - - - - - - - -  */
+
+#itemsListMainBlock{
+	height:				auto;
+	padding:			0px;
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		column;		
+	flex-wrap:			no-wrap;	
+	justify-content:	flex-start;	/* Blocs calés en haut */
+	align-items:		stretch;	/* Blocs étirés à partir de la gauche */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			1;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				2;			
+	}
+
+
+/* Corps du volet - Elements de liste */
+/* . . . . . . . . . . . . . . . . .  */
+											    /* #################### */
+.itemActionBarBlock{							/* Bloc en mode Display */
+	background-color:	var(--white);
+	height:				auto;
+	margin:				5px;
+	padding:			5px;
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	flex-start;	/* Cadrage à gauche  */
+	align-items:		center;		/* Centrage vertical */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+											    /* ################## */
+.itemActionBarInputField{						/* Bloc en mode Input */
+	background-color:	inherit;
+	color:				var(--grey03);	
+	height:				auto;
+	margin:				2px;
+	border:				none;
+	outline:			none;	/* Fait disparaitre le cadre bleu lors du focus */
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	flex-start;	/* Cadrage à gauche  */
+	align-items:		center;		/* Centrage vertical */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+
+.itemPageBlock{
+	background-color:	var(--blue05);
+	color:				var(--white);
+	height:				auto;
+	margin:				10px 5px 5px 5px;
+	padding:			5px;
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	flex-start;	/* Cadrage à gauche  */
+	align-items:		center;		/* Centrage vertical */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+
+											    /* ################## */
+.itemPageInputField{							/* Bloc en mode Input */
+	background-color:	inherit;
+	color:				var(--white);	
+	height:				auto;
+	margin:				2px;
+	border:				none;
+	outline:			none;	/* Fait disparaitre le cadre bleu lors du focus */
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	flex-start;	/* Cadrage à gauche  */
+	align-items:		center;		/* Centrage vertical */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+
+.itemNavPanBlock{
+	background-color:	var(--white);
+	color:				var(--grey03);
+	height:				auto;
+	margin:				5px 5px 5px 25px;
+	padding:			5px;
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	flex-start;	/* Cadrage à gauche  */
+	align-items:		center;		/* Centrage vertical */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+
+											    /* ################## */
+.itemNavPanInputField{							/* Bloc en mode Input */
+	background-color:	var(--white);
+	color:				var(--grey03);	
+	height:				auto;
+	margin:				2px;
+	border:				none;
+	outline:			none;	/* Fait disparaitre le cadre bleu lors du focus */
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	flex-start;	/* Cadrage à gauche  */
+	align-items:		center;		/* Centrage vertical */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+
+.itemBlockBlock{
+	background-color:	var(--white);
+	height:				auto;
+	margin:				5px 5px 5px 25px;
+	padding:			5px;
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	flex-start;	/* Cadrage à gauche  */
+	align-items:		center;		/* Centrage vertical */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+												/* ################## */
+.itemBlockInputField{							/* Bloc en mode Input */
+	background-color:	var(--white);
+	color:				var(--grey03);	
+	height:				auto;
+	margin:				2px;
+	border:				none;
+	outline:			none;	/* Fait disparaitre le cadre bleu lors du focus */
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	flex-start;	/* Cadrage à gauche  */
+	align-items:		center;		/* Centrage vertical */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+
+.itemFooterBlock{
+	background-color:	var(--white);
+	color:				var(--grey03);
+	height:				auto;
+	margin:				5px 5px 5px 25px;
+	padding:			5px;
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	flex-start;	/* Cadrage à gauche  */
+	align-items:		center;		/* Centrage vertical */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+
+											    /* ################## */
+.itemFooterInputField{							/* Bloc en mode Input */
+	background-color:	var(--white);
+	color:				var(--grey03);	
+	height:				auto;
+	margin:				2px;
+	border:				none;
+	outline:			none;	/* Fait disparaitre le cadre bleu lors du focus */
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	flex-start;	/* Cadrage à gauche  */
+	align-items:		center;		/* Centrage vertical */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+
+
+.itemDeco{
+	background-color:	var(--white);
+	height:				12px;
+	width:				12px;
+	margin:				0px 10px 0px 2px;
+	padding:			0px;
+	/* Flex item. */
+	display:			flex;
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+
+
+/* -------------------------------------------------------------------------------------------------------------------- */
+/*  III.2.C  Schéma de la transaction																					*/
+/* -------------------------------------------------------------------------------------------------------------------- */
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+/* Schéma : Conteneur principal												*/
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+#schemaBlock{
+	background-color:	var(--grey01);		
+	width:				auto;
+	height:				auto;
+	padding:			30px;
+	overflow-y:			auto;
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		column;		
+	flex-wrap:			no-wrap;	
+	justify-content:	flex-start;	/* Blocs calés en haut */
+	align-items:		stretch;	/* Blocs étirés à partir de la gauche */
+	align-content:		flex-start;
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			1;			
+	flex-shrink:		1;
+	flex-basis:			auto;		
+	order:				1;			
+	}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+/* Schéma : Barre de titre 													*/
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+#schemaTitleBarBlock{
+	/*background-color:	var(--blue05);*/
+	width:				auto;
+	height:				30px;
+	color: 				white;
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	center;		/* Centrage horizontal */
+	align-items:		center;		/* Centrage vertical   */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				1;			
+	}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+/* Schéma : Barre d'action 													*/
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+#schemaActionBarBlock{
+	background-color:	var(--white);	/* xxx*/
+	width:				auto;
+	max-height:			60px;
+	min-height:			30px;
+	color:				var(--grey03);
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	flex-start;	/* Cadrage à gauche  */
+	align-items:		center;		/* Centrage vertical */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			1;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				2;			
+	}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+/* Schéma : Barre d'action 				 									*/
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+/* Schéma : Barre d'action : Conteneur en mode "Non créé" */
+/* ...................................................... */
+
+#schemaActionBarEmptyBlock{
+	background-color:	var(--grey01);	/* xxx*/
+	width:				auto;
+	height:				60px;
+	padding:			0px 5px 0px 5px;
+	color:				var(--grey03);
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	center;		/* Centrage horizontal */
+	align-items:		center;		/* Centrage vertical   */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				2;			
+	}
+
+
+/* Schéma : Barre d'action : Conteneur en mode "Créé" */
+/* .................................................. */
+
+#schemaActionBarFilledBlock{
+	background-color:	var(--white);	/* xxx*/
+	width:				auto;
+	height:				60px;
+	padding:			0px 5px 0px 5px;
+	color:				var(--grey03);
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	space-between;	/* Blocs répartis avec espaces */
+	align-items:		flex-start;		/* Centrage vertical */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				2;			
+	}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+/* Schéma : Barre contenant les onglets 									*/
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+/* Schéma : Barre d'onglets : Conteneur principal */
+/* .............................................. */
+
+#schemaTabBarBlock{
+	background-color:	none;
+	width:				auto;
+	height:				auto;
+	min-height:			40px;
+	color:				var(--grey03);
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	flex-start;	/* Cadrage à gauche  */
+	align-items:		center;		/* Centrage vertical */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				3;			
+	}
+
+
+/* Schéma : Barre d'onglets : Espace vide au-dessus du volet */
+/* ......................................................... */
+
+#schemaTabBarEmptyBlock{
+	background-color:	none;	/**/
+	width:				130px;
+	height:				auto;
+	/* Flex item. */
+	display:			flex;
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				1;			/* No d'ordre du bloc dans le conteneur */
+	}
+
+/* Schéma : Barre d'onglets : Liste des onglets   */
+/* .............................................. */
+
+#schemaTabBarListBlock{
+	background-color:	none;	/* xxx*/
+	width:				auto;
+	height:				auto;
+	color:				var(--grey03);
+	overflow-y:			auto;
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			wrap;		
+	justify-content:	flex-start;	/* Cadrage à gauche  */
+	align-items:		center;		/* Centrage vertical */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			1;			
+	flex-shrink:		1;			
+	flex-basis:			auto;		
+	order:				2;			
+	}
+
+
+/* Schéma : Barre d'onglets : Conteneur Onglet  */
+/* ............................................ */
+
+.tabBarBlock{
+	background-color:	var(--white);
+	width:				120px;
+	height:				38px;	/* 40px - 2 borders de 1px */
+	border:				3px solid var(--grey01);  	/**/
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			wrap;	
+	justify-content:	flex-start;	/* Cadrage à gauche  */
+	align-items:		center;		/* Centrage vertical */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;	
+	}
+
+
+.tabBarLabel {
+	width:				84px;
+	height:				12px;
+	border:				0;			
+	background-color: 	none;	
+	padding:			8px 0px 8px 0px;
+	margin:				5px 3px 5px 3px;
+	font-size:			12px;
+	font-style:			italic;
+	color: 				var(--grey03);
+	cursor:				pointer;
+	/* Flex item. */
+	display:			flex;
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+/* Schéma : Partie principale (Volet et Zone des blocs) 					*/
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+.schemaMainAreaBlock{
+	background-color:	orange;	/* xxx*/
+	width:				auto;
+	min-height:			300px;
+	color:				var(--grey03);
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	stretch;	/* Blocs étirés à partir de la gauche */
+	align-items:		stretch;	/* Blocs étirés à partir du haut */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			1;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				4;			
+	}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+/* Schéma : Partie principale : Volet de navigation 						*/
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+/* Schéma : Volet de navigation : Conteneur en mode "Initial" (aucune page créée) */
+/* .............................................................................. */
+
+#schemaNavPanInitBlock{
+	background-color:	var(--grey01);	/* xxx*/
+	width:				120px;
+	height:				auto;
+	padding:			0px 5px 0px 5px;
+	color:				var(--grey03);
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		column;		
+	flex-wrap:			no-wrap;	
+	justify-content:	center;		/* Centrage vertical   */
+	align-items:		center;		/* Centrage horizontal */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				1;			
+	}
+
+
+/* Schéma : Volet de navigation : Conteneur en mode "Non créé" */
+/* ........................................................... */
+
+.schemaNavPanEmptyBlock{
+	background-color:	var(--grey01);	/* xxx*/
+	width:				120px;
+	height:				auto;
+	padding:			0px 5px 0px 5px;
+	color:				var(--grey03);
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		column;		
+	flex-wrap:			no-wrap;	
+	justify-content:	center;		/* Centrage vertical   */
+	align-items:		center;		/* Centrage horizontal */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				1;			
+	}
+
+
+/* Schéma : Volet de navigation : Conteneur en mode "Créé"     */
+/* ........................................................... */
+
+.schemaNavPanFilledBlock{
+	background-color:	var(--grey07);
+	width:				120px;
+	height:				auto;
+	padding:			0px 5px 0px 5px;
+	color:				var(--white);
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;
+	flex-wrap:			no-wrap;	
+	justify-content:	space-between;	/* Blocs répartis avec espaces */
+	align-items:		flex-start;		/* Blocs calés en haut */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				1;			
+	}
+
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+/* Schéma : Zone des blocs 													*/
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+.schemaBlocksAreaBlock{
+	background-color:	var(--blue05);	/* xxx*/
+	width:				auto;
+	min-height:			300px;
+	color:				var(--grey03);
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			wrap;		
+	justify-content:	flex-start;	/* Cadrage à gauche  */
+	align-items:		center;		/* Centrage vertical */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			1;			
+	flex-shrink:		1;			
+	flex-basis:			auto;		
+	order:				2;			
+	}
+
+
+
+/* Schéma : Bloc */
+/* . . . . . . . */
+
+.schemaBlockBlock{
+	background-color:	var(--white);
+	width:				200px;
+	height:				60px;
+	margin:				10px;
+	color:				var(--grey03);
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			wrap;		
+	justify-content:	space-between;	/* Blocs répartis avec espaces */
+	align-items:		center;			/* Centrage vertical */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+/* Schéma : Pied de page 				 									*/
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+/* Schéma : Pied de page : Conteneur en mode "Initial" (Aucune page créée) */
+/* ....................................................................... */
+
+#schemaFooterInitBlock{
+	background-color:	var(--grey01);
+	width:				auto;
+	height:				40px;
+	padding:			0px 5px 0px 5px;
+	color:				var(--grey03);
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	center;	/* Centrage horizontal */
+	align-items:		center;	/* Centrage vertical   */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				5;			
+	}
+
+
+/* Schéma : Pied de page : Conteneur en mode "Non créé" */
+/* .................................................... */
+
+.schemaFooterEmptyBlock{
+	background-color:	var(--grey01);
+	width:				auto;
+	height:				40px;
+	padding:			0px 5px 0px 5px;
+	color:				var(--grey03);
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	center;	/* Centrage horizontal */
+	align-items:		center;	/* Centrage vertical   */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				5;			
+	}
+
+
+/* Schéma : Pied de page : Conteneur en mode "Créé"	*/
+/* ................................................ */
+
+.schemaFooterFilledBlock{
+	background-color:	var(--grey04);
+	width:				auto;
+	height:				40px;
+	padding:			0px 5px 0px 5px;
+	color:				var(--white);
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	space-between;	/* Blocs répartis avec espaces */
+	align-items:		flex-start;		/* Centrage vertical */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				5;			
+	}
+
+
+
+/* ==================================================================================================================== */
+/*																														*/
+/*  IV. FENETRES		             	        																		*/
+/*																														*/
+/* ==================================================================================================================== */
+
+
+/* -------------------------------------------------------------------------------------------------------------------- */
+/*  SETTINGS WINDOW																										*/
+/* -------------------------------------------------------------------------------------------------------------------- */
+
+/* Conteneur principal														*/
+/* ------------------------------------------------------------------------ */
+#settingsWindow{
+	position:			absolute;
+	left:				10px;
+	top:				56px;
+	height:				85%;
+	width:				300px;
+	background-color:	var(--white);
+	padding:			10px;
+	z-index:			999999;
+	/* Flex cont. */
+	display:			none;
+	flex-direction:		column;		
+	flex-wrap:			no-wrap;	
+	justify-content:	flex-start;	/* Blocs calés en haut */
+	align-items:		stretch;	/* Blocs étirés à partir de la gauche */
+	align-content:		flex-start;	
+	}
+
+/* Titre																	*/
+/* ------------------------------------------------------------------------ */
+#settingsWindowTitleBlock{
+	height:				auto;
+	margin:				10px 10px 10px 10px;
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	space-between;	/* Blocs répartis avec espaces */
+	align-items:		center;			/* Centrage vertical */
+	align-content:		flex-start;	
+	/* Flex item */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				1;			
+	}
+
+#settingsWindowTitleLabel{
+	height:				auto;
+	width:				auto;
+	font-size:	 		16px;
+	font-weight:		700;
+	/*border:				1px solid blue;  /* */
+	/* Flex item. */
+	display:			flex;
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+
+/* Corps 																	*/
+/* ------------------------------------------------------------------------ */
+#settingsWindowBodyBlock{
+	height:				auto;
+	max-height:			80%;
+	width:				auto;
+	margin:				0px;
+	padding:			0px;
+	border:				1px solid var(--grey02);
+	overflow-y:			auto;						/* Ne fonctionne pas ? */
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		column;		
+	flex-wrap:			no-wrap;	
+	justify-content:	flex-start;	/* Blocs calés en haut */
+	align-items:		stretch;	/* Blocs étirés à partir de la gauche */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				2;			
+	}
+
+
+/* En-tête de bloc										*/
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+.settingsWindowHeaderBlock{
+	height:				auto;
+	width:				auto;
+	background-color:	var(--grey02);
+	margin:				0px 0px 0px 0px;
+	padding:			5px 0px 5px 0px;
+	/*border:				1px solid red;  /* */
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	space-between;	/* Blocs répartis avec espaces */
+	align-items:		stretch;		/* Blocs étirés à partir du haut */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+
+.settingsWindowHeaderLabel{
+	height:				auto;
+	width:				auto;
+	color:				var(--grey03);
+	margin:				5px 10px 5px 10px;
+	/* Flex item. */
+	display:			flex;
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+	
+.windowIconButton{
+	width:				60px;
+	height:				auto;
+	padding:			0px;
+	border:				none;		/* Important car valeur par défaut = outset */
+	background-color:	inherit;	/* Important car valeur par défaut = gris	*/
+	cursor:				pointer;
+	outline:			none;		/* Evite le vilain cadre noir autour de l'icône */
+	/* Flex item. */
+	display:			flex;
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;
+	/* Flex cont. */
+	justify-content:	center;	/* Icône centrée sur une zone large*/	
+	}
+.windowIconButton:hover{background-color:	var(--whiteTr);}
+
+
+/* Contenu de bloc - Conteneurs principaux				*/
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+.settingsWindowContentBlock{
+	height:				auto;
+	width:				auto;
+	margin:				0px 10px 0px 10px;
+	padding:			5px 5px 5px 5px;
+	font-size:	 		12px;
+	/*border:				1px solid red;  /* */
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		column;		
+	flex-wrap:			no-wrap;	
+	justify-content:	flex-start;	/* Blocs calés en haut */
+	align-items:		stretch;	/* Blocs étirés à partir de la gauche */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+	
+.settingsWindowLineBlock{
+	height:				auto;
+	width:				auto;
+	margin:				0px;
+	padding:			3px;
+	/*border:				1px solid red;  /* */
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	flex-start;	/* Cadrage à gauche  */
+	align-items:		center;		/* Centrage vertical */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+
+/* Contenu de bloc - Bloc des couleurs					*/
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+.settingsWindowColorField{
+	height:				20px;
+	width:				40px;
+	margin:				5px 10px 5px 20px;
+	padding:			0px	 0px 0px  0px;
+	color:				var(--grey05);
+	background-color:	var(--white);
+	border:				1px solid var(--grey06);
+	outline:			none;		/* Supprime le cadre bleu du focus */
+	/* Flex item. */
+	display:			flex;
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+
+.settingsWindowColorLabel{
+	height:				auto;
+	width:				auto;
+	color:				var(--grey03);
+	margin:				5px 10px 5px 10px;
+	/* Flex item. */
+	display:			flex;
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+
+/* Contenu de bloc - Bloc des noms						*/
+/* - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+.settingsWindowNameLabel{
+	height:				auto;
+	width:				30%;
+	margin:				3px 3px 3px 3px;
+	padding:			2px	2px 2px 2px;
+	/*border:				1px dashed blue;  /**/
+	/* Flex item. */
+	display:			flex;
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+					 /* Texte    */			
+	justify-content:	flex-end;	/* Texte calé à droite sur la ligne		*/
+	}
+
+.settingsWindowNameField{
+	height:				auto;
+	width:				auto;
+	margin:				3px 0px 3px 3px;
+	padding:			2px	2px 2px 2px;
+	color:				var(--grey03);
+	background-color:	var(--white);
+	font-size:	 		12px;
+	border:				1px solid var(--grey06);
+	text-align:			left;
+	outline:			none;		/* Supprime le cadre bleu du focus */
+	/* Flex item. */
+	display:			flex;
+	align-self:			auto;	
+	flex-grow:			0;	
+	flex-shrink:		0;
+	flex-basis:			auto;
+	order:				0;	
+	}
+
+/* Bouton réinit					*/
+/* - - - - - - - - - - - - - - - -  */
+
+.settingsWindowActionButton {
+	width:				auto;
+	height:				30px;
+	border:				0;		/* Important car valeur par défaut = outset */
+	border-radius: 		4px;	/* Coins arrondis */
+	background-color: 	var(--violet01);
+	margin:				20px;
+	padding:			3px 20px 3px 20px;
+	font-weight:		400;
+	color: 				white;
+	cursor:				pointer;
+	/* Flex item. */
+	display:			flex;
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				99;	
+	/* Texte    */			
+	justify-content:	center;	/* Texte centré dans le bouton */	
+}
+.settingsWindowActionButton:hover{background-color:	var(--violet02);}
+
+
+/* -------------------------------------------------------------------------------------------------------------------- */
+/*  HELP WINDOW																											*/
+/* -------------------------------------------------------------------------------------------------------------------- */
+
+#helpWindow{
+	position:			absolute;
+	right:				22px;
+	top:				56px;
+	height:				80%;
+	width:				40%;
+	background-color:	var(--white);
+	border:				1px solid var(--grey02);
+	padding:			10px;
+	z-index:			999999;
+	/* Flex cont. */
+	display:			none;
+	flex-direction:		column;		
+	flex-wrap:			no-wrap;	
+	justify-content:	flex-start;	/* Blocs calés en haut */
+	align-items:		stretch;	/* Blocs étirés à partir de la gauche */
+	align-content:		flex-start;	
+	}
+
+#helpWindowTitleBlock{
+	height:				auto;
+	margin:				10px 10px 10px 10px;
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		row;		
+	flex-wrap:			no-wrap;	
+	justify-content:	space-between;	/* Blocs répartis avec espaces */
+	align-items:		center;			/* Centrage vertical */
+	align-content:		flex-start;	
+	/* Flex item */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				1;			
+	}
+
+#helpWindowHeaderLabel{
+	height:				auto;
+	width:				auto;
+	font-size:	 		16px;
+	font-weight:		700;
+	/*border:				1px solid blue;  /* */
+	/* Flex item. */
+	display:			flex;
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+
+#helpWindowTextBlock{
+	height:				80%;
+	width:				auto;
+	margin:				10px;
+	padding:			5px 0px 5px 5px;
+	/*border:				1px solid blue;  /* */
+	overflow-y:			auto;
+	/* Flex cont. */
+	display:			flex;
+	flex-direction:		column;		
+	flex-wrap:			no-wrap;	
+	justify-content:	flex-start;	/* Blocs calés en haut */
+	align-items:		stretch;	/* Blocs étirés à partir de la gauche */
+	align-content:		flex-start;	
+	/* Flex item. */
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				2;			
+	}
+	
+.helpWindowTextT0{
+	height:				auto;
+	width:				auto;
+	margin:				15px 10px 5px 10px;
+	font-size:	 		12px;
+	text-decoration:	underline;
+	/* Flex item. */
+	display:			flex;
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+.helpWindowTextT1{
+	height:				auto;
+	width:				auto;
+	margin:				5px 10px 5px 30px;
+	font-size:	 		12px;
+	/* Flex item. */
+	display:			flex;
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+
+.helpWindowTextT2{
+	height:				auto;
+	width:				auto;
+	margin:				5px 10px 5px 50px;
+	font-size:	 		12px;
+	/* Flex item. */
+	display:			flex;
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+
+.helpWindowTextCt{
+	height:				auto;
+	width:				auto;
+	margin:				2px 10px 2px 50px;
+	font-size:	 		10px;
+	font-style:			italic;
+	/* Flex item. */
+	display:			flex;
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+/* -------------------------------------------------------------------------------------------------------------------- */
+/*  Voile Gris																										*/
+/* -------------------------------------------------------------------------------------------------------------------- */
+
+#greyShadowWindow{
+	position:			absolute;
+	right:				0px;
+	top:				0px;
+	height:				100%;
+	width:				100%;
+	background-color:	var(--grey04Tr);
+	display:			none;
+	z-index:			999;
+	}
+
+
+/* ==================================================================================================================== */
+/*																														*/
+/*  V. ELEMENTS COMMUNS              	        																		*/
+/*																														*/
+/* ==================================================================================================================== */
+
+/* -------------------------------------------------------------------------------------------------------------------- */
+/*  Bouton d'action : Ajout d'un élément sur le schéma																	*/
+/* -------------------------------------------------------------------------------------------------------------------- */
+
+/*  Modèle 1											*/
+/* ---------------------------------------------------- */
+
+.addButton {
+	width:				auto;
+	height:				24px;
+	border:				1px dashed var(--blue01);	
+	border-radius: 		12px;		/* Coins arrondis */
+	background-color: 	var(--white);	
+	padding:			2px 12px 2px 12px;
+	margin:				10px 10px 10px 10px;
+	font-weight:		400;
+	color: 				var(--blue01);
+	cursor:				pointer;
+	outline:			none;	/* Fait disparaitre le cadre bleu lors du focus */
+	/* Flex item. */
+	display:			flex;
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+}
+.addButton:hover{background-color: var(--blue02);}
+
+
+/*  Modèle 2	(pour ajout de blocs)					*/
+/* ---------------------------------------------------- */
+
+.addButton2 {
+	width:				auto;
+	height:				24px;
+	border:				1px dashed var(--blue01);
+	border-radius: 		12px;		/* Coins arrondis */
+	background-color: 	var(--white);		
+	padding:			2px 12px 2px 12px;
+	margin:				23px 10px 23px 30px;
+	font-weight:		400;
+	color: 				var(--blue01);
+	cursor:				pointer;
+	outline:			none;	/* Fait disparaitre le cadre bleu lors du focus */
+	/* Flex item. */
+	display:			flex;
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+}
+.addButton2:hover{background-color: var(--blue02);}
+
+
+/* -------------------------------------------------------------------------------------------------------------------- */
+/*  Zones de libellé du schéma																							*/
+/* -------------------------------------------------------------------------------------------------------------------- */
+
+/* Libellé blanc															*/
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+.schemaWhiteLabel {
+	width:				auto;
+	height:				auto;
+	border:				0;			/* Important car valeur par défaut = outset */
+	background-color: 	none;	
+	padding:			8px 8px 8px 8px;
+	font-size:			12px;
+	font-style:			italic;
+	color: 				var(--white);
+	/* Flex item. */
+	display:			flex;
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+}
+
+/* Libellé gris															*/
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+.schemaGreyLabel {
+	width:				auto;
+	height:				auto;
+	border:				0;			/* Important car valeur par défaut = outset */
+	background-color: 	none;	
+	padding:			8px 8px 8px 8px;
+	font-size:			12px;
+	font-style:			italic;
+	color: 				var(--grey03);
+	/* Flex item. */
+	display:			flex;
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+}
+
+/* -------------------------------------------------------------------------------------------------------------------- */
+/*  Icone Cancel : Suppression d'un élément du schéma																	*/
+/* -------------------------------------------------------------------------------------------------------------------- */
+
+.deleteIconButton{
+	width:				30px;
+	height:				30px;
+	padding:			9px;
+	border:				none;		/* Important car valeur par défaut = outset */
+	background-color:	inherit;	/* Important car valeur par défaut = gris	*/
+	cursor:				pointer;
+	outline:			none;		/* Evite le vilain cadre noir autour de l'icône */
+	/* Flex item. */
+	display:			flex;
+	align-self:			auto;		
+	flex-grow:			0;			
+	flex-shrink:		0;			
+	flex-basis:			auto;		
+	order:				0;			
+	}
+.deleteIconButton:hover{background-color:	var(--whiteTr);}
+
+}
+

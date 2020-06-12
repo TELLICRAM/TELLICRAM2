@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<!-- HEAD    HEAD    HEAD    HEAD    HEAD    HEAD    HEAD   HEAD    HEAD    HEAD    HEAD    HEAD    HEAD     -->
+<!--     HEAD    HEAD    HEAD    HEAD    HEAD    HEAD    HEAD   HEAD    HEAD    HEAD    HEAD    HEAD    HEAD -->
+<head>
+
+	<!-- Titre de la maquette, affiché dans l'onglet du navigateur -->
+
+	<title>Composition </title>		
+
+
+	<!-- Lien vers le fichier CSS associé -->
+	
+	<link rel="stylesheet" type="text/css" href="CompositionScreen.css" >	
+	
+	
+	<!-- 	Les icones ont été récupérées ici : https://material.io/resources/icons/?icon=help_outline&style=round en format svg (24px)
+			Pour changer la couleur : ajouter l'attribut de présentation fill dans le chemin. Ex: <path fill="#FFFFFF" d=...																																		-->
+
+	<!-- Largeur de la page = largeur du device
+		 Niveau de zoom = 1						-->
+		
+	<meta name="viewport"  content="width=device-width, initial-scale=1.0">
+
+
+	<!-- Encodage UTF-8 (pour affichage des accents etc.)	-->
+		
+	<meta charset="utf-8" />
+	
+
+</head>
+
+<!-- BODY    BODY    BODY    BODY    BODY    BODY    BODY    BODY    BODY    BODY    BODY    BODY    BODY     -->
+<!--     BODY    BODY    BODY    BODY    BODY    BODY    BODY    BODY    BODY    BODY    BODY    BODY    BODY -->
+
+<body>
+
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx     BARRE DE TITRE     xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
+<div id="titleBarBlock">
+	
+	<!-- Logo O.P.A.L. -->
+		
+	<div id="logoBlock" onclick="testScreenSize();"></div>		<!-- TODO Ajouter un onclick utile -->
+	
+	<!-- Bloc des Icones de gauche -->
+
+	<div id="leftIconsBlock">
+		<button class="titleBarIconButton"  onclick="iconHomeProcessing();">
+			<img src = "svg/home_646970.svg"  alt="icone Home" title="Back to menu"></img>
+		</button>
+		<button class="titleBarIconButton" onclick="iconUndoProcessing();">
+			<img src = "svg/undo_646970.svg"  alt="icone undo" title="Undo last action"></img>
+		</button>	
+		<button class="titleBarIconButton" onclick="iconRedoProcessing();">		
+			<img src = "svg/redo_646970.svg"  alt="icone redo" title="Redo deleted action" ></img>
+		</button>			
+	</div>		
+	
+	<!-- Bloc de titre -->
+		
+	<div id="titleNameBlock" onclick="wrongClickProcessing();">Composition</div>
+
+	<!-- Bloc des boutons -->	
+			
+	<div id="actionButtonsBlock" >
+		<input type="button" class="titleBarActionButton" value="Validate" onclick="traitementValidation()">
+	</div>
+	
+	<!-- Bloc des icones de droite -->
+
+	<div id="rightIconsBlock">
+		<button class="titleBarIconButton" id="settingsButton" onclick="iconSettingsProcessing();">
+			<img src = "svg/settings_646970.svg"  alt="icone settings" title="Settings"></img>
+		</button>
+		<button class="titleBarIconButton" id="helpButton" onclick="iconHelpProcessing();">		
+			<img src = "svg/help_646970.svg"  alt="icone help" title="Help" ></img>
+		</button>			
+	</div>		
+</div>
+
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx     CORPS DE L'ECRAN    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
+<div id="screenBlock">									<!-- Corps de l'écran / Type ligne -->	
+
+	<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  LISTE DES ELEMENTS  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
+	<div id="itemsListBlock" >
+	
+		<div id="itemsListHeaderBlock" >
+			<div id="itemsListHeaderLabel">Items list</div>
+			<button id="itemsListHeaderIconButton" id="Burger" onclick="manageNav();"><img src = "svg/menu_646970.svg" alt="icone menu" title="Menu"></img></button>		
+		</div>	
+		<div id="itemTransactionBlock"><input id="itemTransactionInputField" type="text" value="xxx" onchange="modificationItem(0)"></div>
+		<div id="itemsListMainBlock"><div id="lastItem" style="display:flex; order:0; color:grey;">.</div></div>
+	</div>
+	
+	<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx      SCHEMA      xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
+	<div id="schemaBlock" >					
+
+		<!-- =========================================    Barre de titre    ========================================= -->
+
+		<div id="schemaTitleBarBlock">Titre bidon utile</div>	
+
+		<!-- =========================================    Barre d'action    ========================================= -->
+
+		<!-- Schéma : Barre d'action en mode "non créé" -->	
+		
+		<div id="schemaActionBarEmptyBlock" style="display:flex;" >
+															
+			<input id="schemaActionBarAddButton" type="button" class="addButton" value="Add action bar" onclick="addActionBarProcessing()">	<!-- Bouton d'ajout -->
+		</div>	
+		
+		<!-- Schéma : Barre d'action en mode "créé" -->	
+		
+		<div id="schemaActionBarFilledBlock" style="display:none;">
+		
+			<div id="000_0000_Label" class="schemaGreyLabel">Action bar</div>	<!-- Libellé -->	
+															
+			<button id="schemaActionBarDeleteButton" class="deleteIconButton"  onclick="deleteActionBarProcessing();">	<!-- Bouton icone Cancel -->
+				<img src = "svg/cancel_646970.svg"  height = '12px' width = '12px' alt="icone Cancel" title="Delete action bar"></img>
+			</button>
+		</div>		
+		<!-- =========================================   Barre des onglets   ======================================== -->
+
+		<!-- Schéma : Zone des onglets, dans l'état initial (aucun onglet) -->	
+
+		<div id="schemaTabBarBlock" >	
+			<div id="schemaTabBarEmptyBlock">		<!-- Espace vide à gauche -->
+			</div>
+			<div id="schemaTabBarListBlock">		<!-- Liste des onglets -->			
+				<!-- Modèle
+				<div id="schemaTabBarPageBlock_1" class="tabBarBlock">
+					<div id="schemaTabBarLabel_1" class="tabBarLabel" >Page 1</div>
+					<button id="schemaTabBarDeleteButton_1" class="deleteIconButton"  onclick="deletePageProcessing();">
+						<img id="img1" src = "svg/cancel_646970.svg"  height = '12px' width = '12px' alt="icone Cancel" title="Delete page"></img>
+					</button>
+				</div>	
+				-->
+				<input id="schemaTabBarAddButton" type="button" class="addButton" value="Add page" onclick="addPageProcessing()">  <!-- Bouton d'ajout -->
+			</div>
+		</div>	
+
+
+		<!-- ========================================   Partie principale   ========================================= -->
+
+		<!-- Schéma : partie principale (volets et zone des blocs) -->	
+
+		<div id="schemaMainAreaInitBlock" class="schemaMainAreaBlock" style="display:flex;" >		
+			<div id="schemaNavPanInitBlock" style="display:flex;">.</div>	
+			<div id="schemaBlocksAreaInitBlock" class="schemaBlocksAreaBlock" style="display:flex; color:white;"></div>
+		</div>	
+		
+		<div id="schemaFooterInitBlock" style="display:flex;" >.</div>	
+
+		<div id = "idTheEnd"></div>	
+
+		<!-- ====================================    Partie principale (Modèle)   =================================== -->
+
+		<!-- Schéma : partie principale (volets et zone des blocs) -->	
+
+<!--	<div id="schemaMainAreaBlock" >				
+		
+			<!-- Schéma : Volet de navigation en mode "non créé" -->	
+		
+<!--		<div id="schemaNavPanEmptyBlock_n" class="schemaNavPanEmptyBlock"style="display:none;">																			
+				<input id="schemaNavPanAddButton_n" type="button" class="addButton" value="Add panel" onclick="addNavPanProcessing()">	
+<!--		</div>	
+		
+			<!-- Schéma : volet de navigation en mode "créé" -->
+			
+<!--		<div id="schemaNavPanFilledBlock_n" class="schemaNavPanFilledBlock" style="display:none;" >	
+				<div id="schemaNavPanLabel_n" class="schemaWhiteLabel">Nav.Panel</div>															
+				<button id="schemaNavPanDeleteButton_n" class="deleteIconButton"  onclick="deleteNavPanProcessing();">	
+					<img src = "svg/cancel_FFFFFF.svg"  height = '12px' width = '12px' alt="icone Cancel" title="Delete nav.panel"></img>
+				</button>
+			</div>	
+
+			<!-- oooooooooooooooooooooooooooooooo          Zone des blocs         ooooooooooooooooooooooooooooooooooo -->
+				
+<!--				<div id = "schemaBlock_n_m" class="schemaBlockBlock" >											
+					<div id = "schemaBlockLabel_n_m" class="schemaGreyLabel">Page n - Bloc m</div>
+					
+					<button id= "schemaBlockDeleteButton_n_m"  class="deleteIconButton"  onclick="deleteBlockProcessing();">		
+						<img src = "svg/cancel_646970.svg"  height = '12px' width = '12px' alt="icone Cancel" title="Delete block"></img>
+					</button>
+				</div>	
+	
+				<input id="schemaBlockAddButton" type="button" class="addButton2" value="Add block" onclick="addBlockProcessing()">				
+		</div>
+					
+		<!-- oooooooooooooooooooooooooooooooo          Pied de page           ooooooooooooooooooooooooooooooooooo -->
+			
+		
+		<!-- Schéma : Pied de page en mode "non créé" -->	
+			
+<!--	<div id="schemaFooterEmptyBlock_n" class="schemaFooterEmptyBlock" style="display:none;" >										
+			<input id="schemaFooterAddButton" type="button" class="addButton" value="Add footer" onclick="addFooterProcessing()">
+		</div>	
+		
+		
+		<!-- Schéma : Pied de page en mode "créé" -->	
+		
+<!--	<div id="schemaFooterFilledBlock_n" class="schemaFooterFilledBlock" style="display:none;" >
+			<div id="schemaFooterLabel" class="schemaWhiteLabel">Footer</div>												
+			<button id="schemaFooterDeleteButton" class="deleteIconButton"  onclick="deleteFooterProcessing();">	
+				<img src = "svg/cancel_FFFFFF.svg"  height = '12px' width = '12px' alt="icone Cancel" title="Delete footer"></img>
+			</button>
+		</div>			
+-->		
+	
+	</div>	<!-- div id="schemaBlock" -->
+
+</div>	<!-- div id="screenBlock" -->
+
+
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx     FENETRES    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
+<!-- ===============================================     SETTINGS     =============================================== -->
+
+<div id="settingsWindow" style="display:none;" >	<!-- style="display:none;" -->
+
+	<!-- Titre                 				-->
+	<!-- ================================== -->
+	
+	<div id="settingsWindowTitleBlock">
+		<div id="settingsWindowTitleLabel">Settings</div>
+		<button id="settingsWindowCancelButton" class="deleteIconButton"  onclick="settingsWindowCancelProcessing();">
+			<img src = "svg/cancel_646970.svg"  height = '12px' width = '12px' alt="icone Cancel" title="Cancel window"></img>
+		</button>
+	</div>
+
+	<!-- Contenu							-->
+	<!-- ================================== -->	
+	
+	<div id="settingsWindowBodyBlock">
+	
+		<!-- Bloc 1	/ Couleurs					-->
+		<!-- ---------------------------------- -->	
+		
+		<div id="settingsWindowHeaderBlock_1" class="settingsWindowHeaderBlock" style="border-bottom:1px solid white">
+			<div class="settingsWindowHeaderLabel">Schema colors default values</div>
+			<button id="settingsWindowButtonDown_1" class="windowIconButton"  style="display:flex;" onclick="settingsWindowExpandProcessing(1);">
+				<img src = "svg/down_646970.svg"  height = '24px' width = '24px' alt="icone Up" title="Expand"></img>
+			</button>	
+			<button id="settingsWindowButtonUp_1" class="windowIconButton"  style="display:none;" onclick="settingsWindowReduceProcessing(1);">
+				<img src = "svg/up_646970.svg"  height = '24px' width = '24px' alt="icone Up" title="Reduce"></img>
+			</button>
+		</div>
+	
+		<div id="settingsWindowContentBlock_1" class="settingsWindowContentBlock" style="display:none;">
+				
+			<div class="settingsWindowLineBlock">													
+				<input id="titleBarColorField" class="settingsWindowColorField" type="color" onblur="changeColorProcessing(this)"/>	
+				<div class="settingsWindowColorLabel">Title bar</div>
+			</div>
+			
+			<div class="settingsWindowLineBlock">														
+				<input id="actionBarColorField" class="settingsWindowColorField" type="color" onblur="changeColorProcessing(this)"/>		
+				<div class="settingsWindowColorLabel">Action bar</div>
+			</div>
+			
+			<div class="settingsWindowLineBlock">													
+				<input id="tabColorField" class="settingsWindowColorField" type="color" onblur="changeColorProcessing(this)"/>	
+				<div class="settingsWindowColorLabel">Tab</div>
+			</div>
+
+			<div class="settingsWindowLineBlock">													
+				<input id="selectedTabColorField" class="settingsWindowColorField" type="color" onblur="changeColorProcessing(this)"/>		
+				<div class="settingsWindowColorLabel">Selected Tab</div>
+			</div>
+
+			<div class="settingsWindowLineBlock">													
+				<input id="navPanColorField" class="settingsWindowColorField" type="color" onblur="changeColorProcessing(this)"/>	
+				<div class="settingsWindowColorLabel">Navigation panel</div>
+			</div>
+			
+			<div class="settingsWindowLineBlock">													
+				<input id="blocksAreaColorField" class="settingsWindowColorField" type="color" onblur="changeColorProcessing(this)"/>	
+				<div class="settingsWindowColorLabel">Blocks area</div>
+			</div>
+			
+			<div class="settingsWindowLineBlock">												
+				<input id ="blockColorField" class="settingsWindowColorField" type="color" onblur="changeColorProcessing(this)"/>	
+				<div class="settingsWindowColorLabel">Block</div>
+			</div>
+
+			<div class="settingsWindowLineBlock">											
+				<input id="footerColorField" class="settingsWindowColorField" type="color" onblur="changeColorProcessing(this)"/>	
+				<div class="settingsWindowColorLabel">Footer</div>
+			</div>
+		</div>
+
+
+		<!-- Bloc 2	/ Noms						-->
+		<!-- ---------------------------------- -->	
+		
+		<div id="settingsWindowHeaderBlock_2" class="settingsWindowHeaderBlock" style="border-bottom:1px solid white">
+			<div class="settingsWindowHeaderLabel">Items names default values</div>
+			<button id="settingsWindowButtonDown_2" class="windowIconButton"  style="display:flex;" onclick="settingsWindowExpandProcessing(2);">
+				<img src = "svg/down_646970.svg"  height = '24px' width = '24px' alt="icone Up" title="Expand"></img>
+			</button>	
+			<button id="settingsWindowButtonUp_2" class="windowIconButton"  style="display:none;" onclick="settingsWindowReduceProcessing(2);">
+				<img src = "svg/up_646970.svg"  height = '24px' width = '24px' alt="icone Up" title="Reduce"></img>
+			</button>
+		</div>
+	
+		<div id="settingsWindowContentBlock_2" class="settingsWindowContentBlock" style="display:none;">
+			<div class="settingsWindowLineBlock">
+				<div class="settingsWindowNameLabel">Action bar</div>
+				<input id="actionBarNameField" class="settingsWindowNameField" type="text" onblur="changeNameProcessing(this)"/>
+			</div>				
+
+			<div class="settingsWindowLineBlock">
+				<div class="settingsWindowNameLabel">Page</div>
+				<input id="pageNameField" class="settingsWindowNameField" type="text" onblur="changeNameProcessing(this)"/>
+			</div>	
+			
+			<div class="settingsWindowLineBlock">
+				<div class="settingsWindowNameLabel">Block</div>
+				<input id="blockNameField" class="settingsWindowNameField" type="text" onblur="changeNameProcessing(this)"/>
+			</div>				
+
+			<div class="settingsWindowLineBlock">
+				<div class="settingsWindowNameLabel">Nav.Panel</div>
+				<input id="navPanNameField" class="settingsWindowNameField" type="text" onblur="changeNameProcessing(this)"/>
+			</div>				
+
+			<div class="settingsWindowLineBlock">
+				<div class="settingsWindowNameLabel">Footer</div>
+				<input id="footerNameField" class="settingsWindowNameField" type="text" onblur="changeNameProcessing(this)"	/>
+			</div>				
+		</div>
+
+		
+		<!-- Bloc 3		-->
+		<!-- ---------------------------------- -->	
+		
+		<div id="settingsWindowHeaderBlock_3" class="settingsWindowHeaderBlock">
+		
+			<div class="settingsWindowHeaderLabel">Others</div>
+			
+			<button id="settingsWindowButtonDown_3" class="windowIconButton"  style="display:flex;" onclick="settingsWindowExpandProcessing(3);">
+				<img src = "svg/down_646970.svg"  height = '24px' width = '24px' alt="icone Up" title="Expand"></img>
+			</button>	
+			
+			<button id="settingsWindowButtonUp_3" class="windowIconButton"  style="display:none;" onclick="settingsWindowReduceProcessing(3);">
+				<img src = "svg/up_646970.svg"  height = '24px' width = '24px' alt="icone Up" title="Reduce"></img>
+			</button>
+		</div>
+	
+		<div id="settingsWindowContentBlock_3" class="settingsWindowContentBlock" style="display:none;">
+			Progress in work
+		</div>
+	</div>		<!-- div id="settingsWindowBodyBlock" -->
+	
+	<input type="button" class="settingsWindowActionButton" value="Default values" onclick="defaultValuesProcessing()">
+	
+	
+</div>		<!-- div id="settingsWindow" -->
+
+
+
+
+
+<!-- =================================================     HELP     ================================================= -->
+
+
+<div id="helpWindow" style="display:none;">	<!-- style="display:none;" -->
+
+	<div id="helpWindowTitleBlock">
+		<div id="helpWindowHeaderLabel">Fonctions de l'écran</div>
+		<button id="helpWindowCancelButton" class="deleteIconButton"  onclick="helpWindowCancelProcessing();">
+			<img src = "svg/cancel_646970.svg"  height = '12px' width = '12px' alt="icone Cancel" title="Cancel window"></img>
+		</button>
+	</div>
+
+	<div id="helpWindowTextBlock">
+
+		<div class="helpWindowTextT0">  SCHEMA</div>
+		<div class="helpWindowTextT1">- Création / Suppression d'une barre d'action</div>
+		<div class="helpWindowTextT1">- Création / Suppression d'une page</div>
+		<div class="helpWindowTextT1">- Sélection d'une page (Clic sur onglet)</div>
+		<div class="helpWindowTextT1">- A l'intérieur d'une page ...</div>
+		<div class="helpWindowTextT2">- Création / Suppression d'un volet gauche</div>
+		<div class="helpWindowTextT2">- Création / Suppression d'un bloc</div>
+		<div class="helpWindowTextT2">- Création / Suppression d'un footer</div>
+
+		<div class="helpWindowTextT0">  LISTE DES ITEMS</div>
+		<div class="helpWindowTextT1">- Modification du nom de la transaction</div>
+		<div class="helpWindowTextT1">- Modification du code (nom) de l'item</div>
+
+		<div class="helpWindowTextT0">  BARRE DE TITRE</div>
+		<div class="helpWindowTextT1">- Home : TODO</div>
+		<div class="helpWindowTextT1">- Undo, Redo : TODO</div>
+		<div class="helpWindowTextT1">- Validation : TODO</div>
+		<div class="helpWindowTextT1">- Settings : En cours</div>
+		<div class="helpWindowTextT1">- Help : a minima</div>
+
+		<div class="helpWindowTextT0">  SETTINGS</div>
+		<div class="helpWindowTextT1">- Modification des couleurs du schéma</div>
+		<div class="helpWindowTextCt">* La prise en compte des modifications est immédiate</div>
+		<div class="helpWindowTextCt">* Les modifications s'appliquent à tous les items</div>
+		<div class="helpWindowTextT1">- Modification des noms d'items par défaut</div>
+		<div class="helpWindowTextCt">* Les modifications ne s'appliquent qu'aux nouveaux items créés</div>
+		<div class="helpWindowTextCt">* Les wildcards &p et &b permettent d'insérer un n°de page sur 3 caractères et un n° de bloc sur 4 caractères</div>
+		
+		<div class="helpWindowTextT0">  BUGS EN COURS</div>
+		<div class="helpWindowTextT1">- Footer : mauvais nommage, disparition</div>
+
+		<div class="helpWindowTextT0">  RAF</div>
+		<div class="helpWindowTextT1">- Stockage des données</div>
+		<div class="helpWindowTextT1">- Synchroniser sélection gauche droite</div>
+		<div class="helpWindowTextT1">- Harmoniser couleur texte</div>
+		<div class="helpWindowTextT1">- Permettre saisie commentaire pour chaque item</div>
+	
+		<div class="helpWindowTextT1">- ...</div>
+	</div>
+
+</div>	<!-- div id="helpWindow" -->
+
+<!-- ===============================================   Voile gris   ============================================== -->
+
+<div id="greyShadowWindow"></div>
+
+
+</body>
+
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx    OTHER    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
+<!-- Lien vers le fichier JS associé -->
+
+	<script src="CompositionScreen.js"></script>		
+</html>
+
+
